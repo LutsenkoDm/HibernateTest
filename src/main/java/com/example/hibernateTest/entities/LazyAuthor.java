@@ -9,24 +9,23 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "author")
-public class Author {
+@Table(name = "lazy_author")
+public class LazyAuthor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "author_name")
     private String authorName;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author id")
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<Book> books;
 
-    public Author(String authorName) {
+    public LazyAuthor(String authorName) {
         this.authorName = authorName;
     }
 
-    public Author(String authorName, Set<Book> books) {
+    public LazyAuthor(String authorName, Set<Book> books) {
         this.authorName = authorName;
         this.books = books;
     }
